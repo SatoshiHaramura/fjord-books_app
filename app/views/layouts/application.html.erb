@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BooksApp</title>
+    <title><%= t(:app_name) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,11 @@
   </head>
 
   <body>
+    <% if I18n.locale == I18n.default_locale %>
+      <%= link_to '英語', { locale: :en } %>
+    <% else %>
+      <%= link_to 'Japanese', { locale: :ja } %>
+    <%end%>
     <%= yield %>
   </body>
 </html>
