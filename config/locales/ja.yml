@@ -145,6 +145,11 @@ ja:
       create: 登録する
       submit: 保存する
       update: 更新する
+      sign_up: サインアップ
+      login: ログイン
+      cancel_account: アカウント削除
+      reset_password: パスワードリセット
+      change_password: パスワード変更
   number:
     currency:
       format:
@@ -215,6 +220,12 @@ ja:
       delete_confirm: よろしいですか？
       title_new: "%{name}の新規作成"
       title_edit: "%{name}の編集"
+      sign_up: サインアップ
+      login: ログイン
+      logout: ログアウト
+      forgot_password: パスワードを忘れた場合はこちら
+      edit_profile: プロフィール編集
+      login_now: としてログイン中
     pagination:
       first: '最初'
       last: '最後'

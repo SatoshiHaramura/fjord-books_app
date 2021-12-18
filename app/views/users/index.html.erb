@@ -1,12 +1,12 @@
-<h1>ユーザー一覧</h1>
+<h1><%= User.model_name.human %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>メールアドレス</th>
-      <th>郵便番号</th>
-      <th>住所</th>
-      <th>自己紹介文</th>
+      <th><%= User.human_attribute_name(:email) %></th>
+      <th><%= User.human_attribute_name(:zip_code) %></th>
+      <th><%= User.human_attribute_name(:address) %></th>
+      <th><%= User.human_attribute_name(:profile) %></th>
       <th colspan="4"></th>
     </tr>
   </thead>
@@ -18,7 +18,7 @@
         <td><%= user.zip_code %></td>
         <td><%= user.address %></td>
         <td><%= user.profile %></td>
-        <td><%= link_to '詳細', user %></td>
+        <td><%= link_to t('views.common.show'), user %></td>
       </tr>
     <% end %>
   </tbody>
