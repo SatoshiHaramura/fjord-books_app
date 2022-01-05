@@ -23,5 +23,7 @@ ja:
         title: タイトル
         body: 本文
         comments: コメント  #g
+        created_at: 投稿日
       comment:
-        body: 本文  #g
+        body: コメント  #g
+        created_at: 投稿日時
