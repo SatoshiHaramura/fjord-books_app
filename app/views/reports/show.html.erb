@@ -44,7 +44,7 @@
 <%= form_with(model: [@report, Comment.new], local: true) do |form| %>
   <div class="field">
     <%= form.label :body %>
-    <%= form.text_area :body %>
+    <%= form.text_area :body, required: true %>
   </div>
 
   <div class="actions">
