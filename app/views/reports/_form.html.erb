@@ -1,10 +1,10 @@
 <%= form_with(model: report) do |form| %>
   <% if report.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
+      <h2><%= t 'errors.template.header.other', model: report.model_name.human, count: report.errors.count %>:</h2>
 
       <ul>
-        <% report.full_messages.each do |message| %>
+        <% report.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
