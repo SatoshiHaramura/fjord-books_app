@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
 
   has_many :comments, dependent: :destroy
+  has_many :reports, dependent: :destroy
 
   has_one_attached :avatar
 
@@ -29,5 +30,13 @@ class User < ApplicationRecord
   def unfollow(user)
     relationship = active_relationships.find_by(following_id: user.id)
     relationship&.destroy!
+  end
+
+  def reported?(report)
+    id == report.user_id
+  end
+
+  def commented?(comment)
+    id == comment.user_id
   end
 end
