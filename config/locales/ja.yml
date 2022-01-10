@@ -243,6 +243,7 @@ ja:
   comments:
     show:
       create: コメントする
+      no_comment: 現在、コメントがありません。
   controllers:
     common:
       notice_create: "%{name}が作成されました。"

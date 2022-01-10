@@ -26,7 +26,7 @@
 <h1><%= Comment.model_name.human %></h1>
 
 <% if @book.comments.count.zero? %>
-  <p>現在、コメントがありません。</p>
+  <p><%= t('comments.show.no_comment') %></p>
 <% else %>
   <% @book.comments.each do |comment| %>
     <% if comment.user.name.present? %>

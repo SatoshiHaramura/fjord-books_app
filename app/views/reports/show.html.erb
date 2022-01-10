@@ -24,7 +24,7 @@
 <h1><%= Comment.model_name.human %></h1>
 
 <% if @report.comments.count.zero? %>
-  <p>現在、コメントがありません。</p>
+  <p><%= t('comments.show.no_comment') %></p>
 <% else %>
 
   <% @report.comments.each do |comment| %>
