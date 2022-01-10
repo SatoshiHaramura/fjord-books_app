@@ -39,4 +39,8 @@ class User < ApplicationRecord
   def commented?(comment)
     id == comment.user_id
   end
+
+  def name_or_email
+    name.presence || email
+  end
 end

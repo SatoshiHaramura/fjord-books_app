@@ -29,11 +29,7 @@
   <p><%= t('comments.show.no_comment') %></p>
 <% else %>
   <% @book.comments.each do |comment| %>
-    <% if comment.user.name.present? %>
-      <p><%= comment.user.name %>
-    <% else %>
-      <p><%= comment.user.email %>
-    <% end %>
+    <p><%= comment.user.name_or_email %>
     <%= l comment.created_at, format: :long %></p>
     <p><%= comment.body %></p>
     <% if current_user.commented?(comment) %>

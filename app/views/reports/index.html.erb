@@ -14,7 +14,7 @@
     <% @reports.each do |report| %>
       <tr>
         <td><%= link_to report.title, report %></td>
-        <td><%= link_to report.user.name, report.user %></td>
+        <td><%= link_to report.user.name_or_email, report.user %></td>
         <td><%= l report.created_at.to_date, format: :long %></td>
       </tr>
     <% end %>
