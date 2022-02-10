@@ -49,6 +49,8 @@ class ReportsTest < ApplicationSystemTestCase
     end
 
     assert_text '日報が削除されました。'
+    assert_no_text '【1日目】初めての日報(修正版)'
+    assert_no_text '本日、初めて日報を作成致しました。これから、宜しくお願いいたします。'
   end
 
   test 'report should be commented' do
