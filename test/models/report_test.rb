@@ -4,15 +4,15 @@ require 'test_helper'
 
 class ReportTest < ActiveSupport::TestCase
   test 'editable? userと引数が同じのときtrueを返す' do
-    alice = User.create!(email: 'alice@example.com', password: 'password')
+    alice = users(:alice)
     report = alice.reports.create!(title: '【1日目】初めての日報', content: '本日、初めて日報を作成致しました。')
 
     assert_equal(true, report.editable?(alice))
   end
 
   test 'editable? userと引数が異なるときfalseを返す' do
-    alice = User.create!(email: 'alice@example.com', password: 'password')
-    bob = User.create!(email: 'bob@example.com', password: 'password')
+    alice = users(:alice)
+    bob = users(:bob)
     report = alice.reports.create!(title: '【1日目】初めての日報', content: '本日、初めて日報を作成致しました。')
 
     assert_equal(false, report.editable?(bob))

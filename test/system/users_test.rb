@@ -42,7 +42,8 @@ class UsersTest < ApplicationSystemTestCase
   end
 
   test 'should follow and unfollow a user' do
-    alice = User.create!(email: 'alice@example.com', password: 'password')
+    alice = users(:alice)
+
     visit user_url(alice)
 
     click_button 'フォローする'

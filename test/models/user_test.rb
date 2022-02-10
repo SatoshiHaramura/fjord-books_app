@@ -4,8 +4,8 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   test 'following? 引数をフォロー中にtrueを返す' do
-    alice = User.create!(email: 'alice@example.com', password: 'password')
-    bob = User.create!(email: 'bob@example.com', password: 'password')
+    alice = users(:alice)
+    bob = users(:bob)
 
     assert_equal(false, alice.following?(bob))
 
@@ -14,15 +14,15 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'following? 引数をフォローしていない時にfalseを返す' do
-    alice = User.create!(email: 'alice@example.com', password: 'password')
-    bob = User.create!(email: 'bob@example.com', password: 'password')
+    alice = users(:alice)
+    bob = users(:bob)
 
     assert_equal(false, alice.following?(bob))
   end
 
   test 'followed_by? 引数にフォローされている時にtrueを返す' do
-    alice = User.create!(email: 'alice@example.com', password: 'password')
-    bob = User.create!(email: 'bob@example.com', password: 'password')
+    alice = users(:alice)
+    bob = users(:bob)
 
     assert_equal(false, alice.followed_by?(bob))
     bob.follow(alice)
@@ -30,15 +30,15 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'followed_by? 引数にフォローされていない時にfalseを返す' do
-    alice = User.create!(email: 'alice@example.com', password: 'password')
-    bob = User.create!(email: 'bob@example.com', password: 'password')
+    alice = users(:alice)
+    bob = users(:bob)
 
     assert_equal(false, alice.followed_by?(bob))
   end
 
   test 'follow 引数をフォロー中またはフォローしていない時にフォロー中とする' do
-    alice = User.create!(email: 'alice@example.com', password: 'password')
-    bob = User.create!(email: 'bob@example.com', password: 'password')
+    alice = users(:alice)
+    bob = users(:bob)
 
     alice.follow(bob)
     assert alice.followings.include?(bob)
@@ -47,8 +47,8 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'unfollow 引数をフォローしている時にフォローを解除する' do
-    alice = User.create!(email: 'alice@example.com', password: 'password')
-    bob = User.create!(email: 'bob@example.com', password: 'password')
+    alice = users(:alice)
+    bob = users(:bob)
 
     alice.follow(bob)
     alice.unfollow(bob)
@@ -56,20 +56,21 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'unfollow 引数をフォローしていない時にnilを返す' do
-    alice = User.create!(email: 'alice@example.com', password: 'password')
-    bob = User.create!(email: 'bob@example.com', password: 'password')
+    alice = users(:alice)
+    bob = users(:bob)
 
     assert_nil(alice.unfollow(bob))
   end
 
   test 'name_or_email nameが存在する時#nameを返す' do
-    alice = User.create!(email: 'alice@example.com', password: 'password', name: 'Alice')
+    users(:alice).update(name: 'Alice')
+    alice = users(:alice)
 
     assert_equal 'Alice', alice.name_or_email
   end
 
   test 'name_or_email nameが存在しない時#emailを返す' do
-    alice = User.create!(email: 'alice@example.com', password: 'password')
+    alice = users(:alice)
 
     assert_equal 'alice@example.com', alice.name_or_email
   end
