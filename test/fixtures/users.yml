@@ -11,6 +11,10 @@ alice:
 bob:
   email: bob@example.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  name: Bob
+  postal_code: 123-4567
+  address: 東京都
+  self_introduction: Bobといいます。よろしくお願いいたします。
 
 ellen:
   email: ellen@example.com
