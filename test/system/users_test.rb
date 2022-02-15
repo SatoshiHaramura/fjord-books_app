@@ -16,18 +16,18 @@ class UsersTest < ApplicationSystemTestCase
 
   test 'visiting the show' do
     visit users_url
-    click_link '詳細'
+    first('a', text: '詳細').click
 
-    assert_text 'ellen@example.com'
-    assert_text 'Ellen'
+    assert_text 'bob@example.com'
+    assert_text 'Bob'
     assert_text '123-4567'
     assert_text '東京都'
-    assert_text 'Ellenといいます。よろしくお願いいたします。'
+    assert_text 'Bobといいます。よろしくお願いいたします。'
   end
 
   test 'visiting the followings index' do
     visit users_url
-    click_link '詳細'
+    first('a', text: '詳細').click
     click_link '0 フォロー'
 
     assert_selector 'h1', text: 'フォロー'
@@ -35,7 +35,7 @@ class UsersTest < ApplicationSystemTestCase
 
   test 'visiting the followers index' do
     visit users_url
-    click_link '詳細'
+    first('a', text: '詳細').click
     click_link '0 フォロワー'
 
     assert_selector 'h1', text: 'フォロワー'
