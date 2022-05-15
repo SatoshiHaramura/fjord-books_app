@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: 'Relationship', foreign_key: :following_id, dependent: :destroy, inverse_of: :following
   has_many :followers, through: :passive_relationships, source: :follower
 
+  has_many :comments, dependent: :destroy
+  has_many :reports, dependent: :destroy
+
   has_one_attached :avatar
 
   def following?(user)
@@ -27,5 +30,17 @@ class User < ApplicationRecord
   def unfollow(user)
     relationship = active_relationships.find_by(following_id: user.id)
     relationship&.destroy!
+  end
+
+  def reported?(report)
+    id == report.user_id
+  end
+
+  def commented?(comment)
+    id == comment.user_id
+  end
+
+  def name_or_email
+    name.presence || email
   end
 end

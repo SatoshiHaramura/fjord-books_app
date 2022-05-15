@@ -1,0 +1,28 @@
+<h1><%= Report.model_name.human %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= Report.human_attribute_name(:title) %></th>
+      <th><%= User.human_attribute_name(:name) %></th>
+      <th><%= Report.human_attribute_name(:created_at) %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reports.each do |report| %>
+      <tr>
+        <td><%= link_to report.title, report %></td>
+        <td><%= link_to report.user.name_or_email, report.user %></td>
+        <td><%= l report.created_at.to_date, format: :long %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @reports %>
+
+<br>
+
+<%= link_to t('views.common.new'), new_report_path %>

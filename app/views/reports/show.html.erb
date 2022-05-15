@@ -1,0 +1,49 @@
+<h1><%= t('views.common.title_show', name: Report.model_name.human) %></h1>
+
+<p>
+  <strong><%= Report.human_attribute_name(:created_at) %>:</strong>
+  <%= l @report.created_at.to_date, format: :long %>
+</p>
+
+<p>
+  <strong><%= Report.human_attribute_name(:title) %>:</strong>
+  <%= @report.title %>
+</p>
+
+<p>
+  <strong><%= Report.human_attribute_name(:body) %>:</strong>
+  <%= @report.body %>
+</p>
+
+<% if current_user.reported?(@report) %>
+  <%= link_to t('views.common.edit'), edit_report_path(@report) %> |
+  <%= link_to t('views.common.destroy'), @report, method: :delete, data: { confirm: t('views.common.delete_confirm') } %>
+<% end %>
+<p><%= link_to t('views.common.back'), reports_path %></p>
+
+<h1><%= Comment.model_name.human %></h1>
+
+<% if @report.comments.count.zero? %>
+  <p><%= t('comments.show.no_comment') %></p>
+<% else %>
+
+  <% @report.comments.each do |comment| %>
+    <p><%= comment.user.name_or_email %>
+    <%= l comment.created_at, format: :long %></p>
+    <p><%= comment.body %></p>
+    <% if current_user.commented?(comment) %>
+      <%= link_to t('views.common.destroy'), [@report, comment], method: :delete, data: { confirm: t('views.common.delete_confirm') } %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= form_with(model: [@report, Comment.new], local: true) do |form| %>
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit t('comments.show.create') %>
+  </div>
+<% end %>
